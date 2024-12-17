@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/automated youtupe download playlist.iml" filepath="$PROJECT_DIR$/.idea/automated youtupe download playlist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/automated downloader.iml" filepath="$PROJECT_DIR$/.idea/automated downloader.iml" />
     </modules>
   </component>
 </project>
