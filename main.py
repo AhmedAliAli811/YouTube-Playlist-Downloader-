@@ -5,12 +5,24 @@ from datetime import datetime
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from dotenv import load_dotenv
+
+load_dotenv()
+
+PLAYLIST_URL = os.getenv("PLAYLIST_URL")
+DOWNLOAD_DIR = os.getenv("DOWNLOAD_DIR")
+LOG_FILE = os.getenv("LOG_FILE")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
+SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
+RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
+
+
 
 def send_email_notification(subject, body):
     """Send an email notification."""
-    sender_email = "ahmedali8112002ali@gmail.com"  # Replace with your email
-    sender_password = "wlsw btfg tskz csni"  # Replace with your email password
-    receiver_email = "aly869556@gmail.com"  # Replace with recipient's email
+    sender_email = SENDER_EMAIL
+    sender_password = SENDER_PASSWORD
+    receiver_email = RECEIVER_EMAIL
 
     try:
         message = MIMEMultipart()
@@ -76,7 +88,7 @@ def download_playlist(playlist_url, log_file, download_dir):
             else:
                 print("No new videos found.")
             if newly_downloaded_videos:
-                subject = f"صباح الخير فى فيديو جديد نزل فى البلايليست ديه {playlist_title} "
+                subject = f"\nصباح الخير فى فيديو جديد نزل فى البلايليست ديه {playlist_title} "
                 body = "وديه الفيديوهات اللى نزلت:\n\n" + "\n".join(newly_downloaded_videos)
                 send_email_notification(subject, body)
 
@@ -87,10 +99,11 @@ def download_playlist(playlist_url, log_file, download_dir):
         print(f"An unexpected error occurred: {e}")
 
 
+
 if __name__ == "__main__":
-    playlist_url = "https://youtube.com/playlist?list=PLLjXG6DNHEgbIgaCkvSQnxG0Fyum2N4Xp&si=gVw1yBoz8gCinSVO"
-    download_dir = "D:\\Data Track\\Courses\power bi\\advanced dax datazone"
-    log_file = "download_log.txt"
+    playlist_url = PLAYLIST_URL
+    download_dir = DOWNLOAD_DIR
+    log_file = LOG_FILE
 
     if not os.path.exists(download_dir):
         os.makedirs(download_dir)
