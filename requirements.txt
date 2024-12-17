@@ -1,2 +1,5 @@
-pytube
+yt_dlp
 schedule
+smtplib
+email
+dotenv
